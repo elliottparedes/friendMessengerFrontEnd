@@ -13,17 +13,18 @@ export default class login extends Component
       HandleSubmit =(event) =>{
         event.preventDefault();
  
-        console.log(event.target.elements.username.value);
+        console.log(event.target.elements.email.value);
         console.log(event.target.elements.password.value);
         console.log("this worked");
         try{
         //need to add password authorization, right now /login route only uses username. 
-        axios.post("https://friendmessenger.herokuapp.com/login", {username:event.target.elements.username.value}).then(
+        axios.post("https://friendmessenger.herokuapp.com/login", {email:event.target.elements.email.value}).then(
           res=>{ 
             console.log(res);
             console.log(res.data)
             localStorage.setItem("JWTKEY",res.data.token);
             this.setState({loggedIn: true});
+            localStorage.setItem("user",res.data.username);
           
           }
         );
@@ -51,7 +52,7 @@ export default class login extends Component
         
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" name="username" placeholder="Enter email" />
+            <Form.Control type="email" name="email" placeholder="Enter email" />
       
           </Form.Group>
     

@@ -7,21 +7,25 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 // import {useState} from 'react';
 import axios from 'axios';
+import React, {Component} from 'react';
+import {Navigate} from "react-router-dom";
 
-export default function register() 
+export default class register extends Component 
 {
+   state = {registered:false};
 
-    const handleSubmit = (event) => {
+        handleSubmit = (event) => {
         event.preventDefault();
         console.log(event.target.elements.username.value);
         console.log(event.target.elements.password.value);
         console.log("this worked");
         try{
-        axios.post("https://friendmessenger.herokuapp.com/addUser", {username:event.target.elements.username.value, password: event.target.elements.password.value}).then(
+        axios.post("https://friendmessenger.herokuapp.com/addUser", {username:event.target.elements.username.value,email:event.target.elements.email.value, password: event.target.elements.password.value}).then(
           res=>{ 
             console.log("Created a new user!");
             console.log(res);
             console.log(res.data)
+            this.setState({registered: true});
             
           }
         );
@@ -33,7 +37,10 @@ export default function register()
     
       }
     
-    
+    render(){
+      if(this.state.registered)
+      return <Navigate to="/login" replace ={true}/>
+
       return (
       <div>
     
@@ -42,14 +49,20 @@ export default function register()
     
           <Link to="/expenses"> Expenses</Link>
          */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
         
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" name="username" placeholder="Enter email" />
+            <Form.Control type="email" name="email" placeholder="Enter email" />
+          </Form.Group>
+         
+          <Form.Group className="mb-3" controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="username" name="username" placeholder="Enter username" />
       
           </Form.Group>
-    
+
+
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" name="password" placeholder="Password" />
@@ -67,8 +80,8 @@ export default function register()
     
      
     
-      );
-    }
+      ); }
+}
 
 
 

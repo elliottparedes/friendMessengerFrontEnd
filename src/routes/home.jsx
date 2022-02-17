@@ -1,18 +1,36 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-
+import { Container } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import MessageList from '../components/messageList';
+import {Navigate} from "react-router-dom";
 export default class Home extends Component {
 
     render(){
        
        if(localStorage.getItem("user")){
-           return (
-               <h2>Hello {localStorage.getItem("user")}</h2>
+           return ( 
+            <div>
+                <Container>
+                    <h2>Hello {localStorage.getItem("user")}</h2>
+                    <Row>
+                        <Col lg={12}>
+                         <MessageList/>
+                        </Col>
+
+
+                    </Row>
+
+                </Container>
+                
+              
+               
+            </div>
            )
        }
-        return(
+            return(
 
-             <h2>This is the home page You are not logged in</h2>
+                <Navigate to="/login" replace ={true}/>
 
         )
     }
