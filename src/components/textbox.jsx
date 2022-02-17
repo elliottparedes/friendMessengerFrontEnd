@@ -43,7 +43,7 @@ export default class messageList extends Component {
     render()
     {
         return(<div>
-            <h4>This is where the textbox goes</h4>
+            
     <Form onSubmit = {this.sendMessage}>
   <Form.Group className="mb-3">
    
