@@ -1,9 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from './components/nav';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
- import {useState} from 'react';
+
 import axios from 'axios';
 import React, {Component} from 'react';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
