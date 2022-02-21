@@ -3,7 +3,9 @@ import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import MessageList from '../components/messageList';
+import LogoutButton from '../components/logoutButton'
 import {Navigate} from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar'
 export default class Home extends Component {
 
     render(){
@@ -12,9 +14,20 @@ export default class Home extends Component {
            return ( 
             <div>
                 <Container>
-                    <h2>Hello {localStorage.getItem("user")}</h2>
+                <Navbar>
+                        
+                        <Navbar.Brand href="#home">Friend Messenger</Navbar.Brand>
+                        <Navbar.Toggle />
+                        <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Text>
+                            Hello {localStorage.getItem("user")} 
+                        </Navbar.Text> <LogoutButton/>
+                        </Navbar.Collapse>
+                    
+                </Navbar>
+                   
                     <Row>
-                        <Col lg={12}>
+                        <Col>
                          <MessageList/>
                         </Col>
 
@@ -28,11 +41,7 @@ export default class Home extends Component {
             </div>
            )
        }
-            return(
-
-                <Navigate to="/login" replace ={true}/>
-
-        )
+       return(<Navigate to="/login" replace ={true}/>)
     }
 
 

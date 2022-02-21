@@ -4,6 +4,10 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import {Navigate} from "react-router-dom";
 import React, {Component} from 'react';
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default class login extends Component
 {
@@ -44,28 +48,40 @@ export default class login extends Component
        return <Navigate to="/" replace ={true}/>
       }
       return (
-      <div>
+      <div style={{height:"100vh", backgroundColor:"rgb(28,141,248)"}}>
     
-         <h2>This is the login page</h2>
-
-        <form onSubmit={this.HandleSubmit}>
+         
+        <Container className="ml-0 mr-0 pl-0 pr-0" style ={{display:"flex", justifyContent:"center",alignItems:"center", height:"100vh"}}>
+          
+          <Row className ="w-80">
+            <Col className="border" style={{backgroundColor:"white", padding:"3rem", borderRadius:"30px"}}>
+              <form onSubmit={this.HandleSubmit}>
+            <h3 className="mt-3 mb-3 text-center">Sign In</h3>
+            <Form.Group className="" controlId="formBasicEmail">
+              <Form.Label className="" style={{fontWeight:"bold"}}>Email address</Form.Label>
+              <Form.Control className="mb-4" type="email" name="email" placeholder="Enter email" />
         
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" name="email" placeholder="Enter email" />
-      
-          </Form.Group>
-    
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Password" />
             </Form.Group>
-    
-          <Button variant="primary" type="submit">
-              Submit
-          </Button>
+      
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label  style={{fontWeight:"bold"}}>Password</Form.Label>
+              <Form.Control className="mb-4" type="password" name="password" placeholder="Enter password" />
+              </Form.Group>
+            <Col className="text-center">
+            <Button className="mb-4 w-100" variant="primary" type="submit">
+                Submit
+            </Button>
+            </Col>
+            
+          
+          </form>
+            </Col>
+              
+          </Row>
+          
+       
+        </Container>
         
-        </form>
     
     
     

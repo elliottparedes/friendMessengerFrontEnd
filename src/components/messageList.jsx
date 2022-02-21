@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
+import AddNewMessage from '../components/addNewMessage'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Textbox from '../components/textbox'
+import LogoutButton from '../components/logoutButton'
+import Container from 'react-bootstrap/Container'
+import Stack from 'react-bootstrap/Stack'
+import './messageList.css'
 
 export default class messageList extends Component {
 
@@ -18,7 +22,7 @@ export default class messageList extends Component {
 
 
 
-    grabData = () =>
+    grabData = async () =>
     {
          try{
 
@@ -62,6 +66,7 @@ export default class messageList extends Component {
                         console.log("the filtered contact list has: " +this.state.filteredContactList);
                         this.setState({messageListLength:res.data.length});
                         this.setState({contactListLength:filteredContacts.length});
+                        
                     }
                        
                   } )
@@ -79,6 +84,7 @@ export default class messageList extends Component {
         console.log(localStorage.getItem("JWTKEY"))
         console.log("messageList component did mount!")
         this.grabData();
+        this.setState({currentContact:this.state.filteredContactList[0]});
          this.updateTimer = setInterval(() => this.grabData(),5000);
 
 
@@ -99,12 +105,9 @@ export default class messageList extends Component {
         const con = this.state.filteredContactList.map( (item,i) =>  
 
             
-            <Card key = {i} style = {{width: '18rem'}} onClick={() =>this.setState({currentContact:item})} >
-                <Card.Body>
-                    <Card.Title>{item}</Card.Title>
-                    <Card.Text>maybe first few words of last message</Card.Text>
-                </Card.Body>
-
+            <Card key = {i} className="text-nowrap border-bottom" style = {{width: '100%'}} onClick={() =>this.setState({currentContact:item})} >
+                
+                    {item}
             </Card> 
         )
         return (con)
@@ -120,13 +123,16 @@ export default class messageList extends Component {
         messages.forEach(element =>m.push(element.body))
 
         const displayMessage = m.map((item,i) => 
-        <Card key = {i} style = {{width: '18rem', backgroundColor: messages[i].sender===this.state.currentContact? 'red':'blue'}} >
+        <Row className="mb-3">
+           <Col>     
+            <Card key = {i} style = {{width: 'auto', backgroundColor: messages[i].sender===this.state.currentContact? '#A865C9':'#4285F4',float:messages[i].sender===this.state.currentContact? 'left':'right'}} >
                 <Card.Body>
                     <Card.Text>{item}</Card.Text>
                 </Card.Body>
-
-            </Card> 
-
+            </Card>
+           </Col>
+        </Row>
+      
         )
         return (displayMessage);
     }
@@ -135,35 +141,32 @@ export default class messageList extends Component {
     {
         return(<div>
 
-               <Row>
-                
-                <h1>Contacts</h1> 
-                <Col sm={6} style={{height: "16rem", overflowY:"auto", width: "20rem"}}>
-                   
-                {this.showContacts()}
-                </Col>
+            <Row className ="mb-4">
+                <Row>
+                    <Col><h1>Friends</h1>  </Col><Col> <h2>{this.state.currentContact}</h2> </Col> <Col><AddNewMessage/> </Col>
+                </Row> 
+                <Row>
+                    <Col className="scrollbar scrollbar-primary" style={{height: "16rem", overflowY:"auto", width: "30%"}}>
+                     {this.showContacts()}
+                    </Col>
+                    <Col sm={12} className="scrollbar scrollbar-primary" style={{height: "16rem", overflowY:"auto", width: "70%"}}>
+                        <Row>
+                            <p>{this.showMessages()}</p>
+                        </Row>
+                    </Col>
                
-                <Col sm={6} style={{height: "16rem", overflowY:"auto", width: "25rem"}}>
-                     <h1>Current Contact</h1>
-                    <h2>{this.state.currentContact}</h2>
-                    <h1>{this.showMessages()}</h1>
-
-                </Col>
-
-
-               </Row>
-               <Row>
-                   <Col sm={12}>
-                       <Textbox currentContact = {this.state.currentContact}/>
+                </Row>
+                
+                <Row className="mt-4 align-items-end">
                     
-                   </Col>
-
-               </Row>
+                        <Textbox currentContact = {this.state.currentContact}/>
+                    
+                </Row>
+            </Row>
+                  
             
-               
-               
-              
-                
+
+            
                
         </div>)
     }

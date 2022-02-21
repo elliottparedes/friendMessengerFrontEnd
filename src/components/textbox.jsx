@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
-
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
+import AddNewMessage from '../components/addNewMessage';
 
 export default class messageList extends Component {
 
@@ -16,7 +18,7 @@ export default class messageList extends Component {
     };
     sendMessage= (e) => 
     {
-        e.preventDefault();
+         e.preventDefault();
         console.log("message works")
         console.log("this is the message: "  +e.target.message.value);
         this.setState({message:e.target.message.value, currentContact:this.props.currentContact }, function () {
@@ -40,22 +42,16 @@ export default class messageList extends Component {
     }
     render()
     {
-        return(<div>
-            
-    <Form onSubmit = {this.sendMessage}>
-  <Form.Group className="mb-3">
-   
-    <Form.Control type="" name="message" placeholder="Message" />
-
-  </Form.Group>
-
-
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
-               
-        
+        return(
+        <div>
+          <Form  className="input-group" onSubmit = {this.sendMessage}>
+            <Form.Group >
+                <Form.Control required type="text" className="form-control" name="message" placeholder="Message" />
+            </Form.Group>
+            <Button className="btn" variant="primary" type="submit">
+            <i className="glyphicon glyphicon-send"></i> 
+            </Button>
+           </Form>
         </div>)
     }
 
