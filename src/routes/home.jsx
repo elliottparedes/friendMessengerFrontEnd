@@ -10,17 +10,18 @@ export default class Home extends Component {
 
     render(){
        
-       if(localStorage.getItem("user")){
+       if(sessionStorage.getItem("user"))
+       {
            return ( 
             <div>
                 <Container>
                 <Navbar>
                         
-                        <Navbar.Brand href="#home">Friend Messenger</Navbar.Brand>
+                        <Navbar.Brand href="#home" style={{marginTop:"2rem"}}>Friend Messenger</Navbar.Brand>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text>
-                            Hello {localStorage.getItem("user")} 
+                        <Navbar.Text style={{marginRight: "1rem", marginTop:"1rem"}}>
+                            Hello {sessionStorage.getItem("user")} 
                         </Navbar.Text> <LogoutButton/>
                         </Navbar.Collapse>
                     
@@ -41,7 +42,7 @@ export default class Home extends Component {
             </div>
            )
        }
-       return(<Navigate to="/login" replace ={true}/>)
+       return(<Navigate to="/login"/>)
     }
 
 

@@ -13,6 +13,7 @@ export default class messageList extends Component {
     {
         console.log("we attempted to log out")
         localStorage.clear();
+        sessionStorage.clear();
         
     }
 
@@ -21,7 +22,7 @@ export default class messageList extends Component {
     {
         return(<div>
             <Form onSubmit = {this.handleLogout}>
-                       <Button type="submit">
+                       <Button className="btn-small" type="submit">
                        <i className="fa fa-sign-out"></i>
             </Button>
             </Form>

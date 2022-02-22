@@ -30,12 +30,12 @@ export default class messageList extends Component {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('JWTKEY')}`
             },
-            data: {sender:localStorage.getItem("user"), receiver:this.state.currentContact, message:this.state.message}
+            data: {sender:sessionStorage.getItem("user"),id:this.props.currentMessageId , message:this.state.message}
           }).then(res =>{
               console.log("this is the response from the sendMessage "+res);
           })
 
-          e.target.message.value = "";
+         
         })
        
 
@@ -45,11 +45,11 @@ export default class messageList extends Component {
         return(
         <div>
           <Form  className="input-group" onSubmit = {this.sendMessage}>
-            <Form.Group >
-                <Form.Control required type="text" className="form-control" name="message" placeholder="Message" />
+            <Form.Group  >
+                <Form.Control style = {{borderRadius:"0"}} required type="text" className="form-control" name="message" placeholder="Message" />
             </Form.Group>
-            <Button className="btn" variant="primary" type="submit">
-            <i className="glyphicon glyphicon-send"></i> 
+            <Button className="btn" style = {{borderRadius:"0"}} variant="primary" type="submit">
+            <i className="fa fa-telegram"></i>
             </Button>
            </Form>
         </div>)

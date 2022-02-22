@@ -12,6 +12,7 @@ export default class logout extends Component{
 
     componentDidMount(){
         localStorage.clear();
+        sessionStorage.clear();
     }
     
     

@@ -14,6 +14,7 @@ export default class login extends Component
 
       
      state = {loggedIn:false}
+
       HandleSubmit =(event) =>{
         event.preventDefault();
  
@@ -27,8 +28,10 @@ export default class login extends Component
             console.log(res);
             console.log(res.data)
             localStorage.setItem("JWTKEY",res.data.token);
+            sessionStorage.setItem("JWTKEY",res.data.token);
             this.setState({loggedIn: true});
             localStorage.setItem("user",res.data.username);
+            sessionStorage.setItem("user",res.data.username);
           
           }
         );

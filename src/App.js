@@ -13,14 +13,14 @@ export default class App extends Component {
 
   state ={};
   componentDidMount= () =>{
-    if(localStorage.getItem("JWTKEY")) // if a JWTKEY is found go ahead and call the user route from backend
+    if(sessionStorage.getItem("JWTKEY") && this.state.user) // if a JWTKEY is found go ahead and call the user route from backend
     {
     axios.get("https://friendmessenger.herokuapp.com/user").then(
       res => {
-          console.log(res.data.username);
-          console.log("you logged in yay!");
+          
+          
           this.setUser(res.data);
-          localStorage.setItem("user",res.data.username);
+          sessionStorage.setItem("user",res.data.username);
       }, 
       err => {
           console.log(err);

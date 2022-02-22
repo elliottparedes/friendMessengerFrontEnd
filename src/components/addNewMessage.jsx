@@ -11,7 +11,8 @@ export default class AddNewMessage extends Component {
 
 
  state = {
-    show: false
+    show: false,
+    messageid:""
     };
     handleClose= () =>
     {
@@ -23,34 +24,49 @@ export default class AddNewMessage extends Component {
         this.setState({show:true})
     }
 
-    sendMessageToNewContact= (e) => 
+    sendMessageToNewContact= async (e) => 
     {
+            
            e.preventDefault();
         
-            axios({
+           const firstResponse = await axios({
+            method: 'POST',
+            url: 'https://friendmessenger.herokuapp.com/createConversation',
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('JWTKEY')}`
+            },
+            data: {participants:[sessionStorage.getItem("user"),e.target.username.value]}
+          })
+            console.log(firstResponse.data._id)
+        
+          const secondResponse = await axios({
             method: 'POST',
             url: 'https://friendmessenger.herokuapp.com/sendMessage',
             headers: {
-              Authorization: `Bearer ${localStorage.getItem('JWTKEY')}`
+              Authorization: `Bearer ${sessionStorage.getItem('JWTKEY')}`
             },
-            data: {sender:localStorage.getItem("user"), receiver:e.target.username.value, message:e.target.message.value}
-          }).then(res =>{
-              console.log("this is the response from the sendMessage "+res);
-              
+            data: {id:firstResponse.data._id,sender:sessionStorage.getItem("user"),message:e.target.message.value}
           })
+             
+          console.log(secondResponse);
+          
+
+
          this.handleClose();
         
 
     }
     render()
     {
-        return(<div style={{float:"right"}}>
+        return(
+        <div>
            
             <Button variant="primary" onClick={this.handleShow}>
-            new message
-      </Button>
-            <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
+             <i className = " fa fa-plus"></i> 
+          
+            </Button>
+            <Modal show={this.state.show} animation={true}>
+            <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
