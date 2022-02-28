@@ -15,14 +15,14 @@ export default class Home extends Component {
            return ( 
             <div>
                 <Container>
-                <Navbar>
+                <Navbar style={{marginBottom:"2rem"}}>
                         
-                        <Navbar.Brand href="#home" style={{marginTop:"2rem"}}>Friend Messenger</Navbar.Brand>
+                        <Navbar.Text href="#home">Friend Messenger</Navbar.Text>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text style={{marginRight: "1rem", marginTop:"1rem"}}>
+                        <Navbar.Text style={{marginRight: "1rem"}}>
                             Hello {sessionStorage.getItem("user")} 
-                        </Navbar.Text> <LogoutButton/>
+                        </Navbar.Text>   <LogoutButton/>
                         </Navbar.Collapse>
                     
                 </Navbar>

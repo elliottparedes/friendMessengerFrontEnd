@@ -22,9 +22,9 @@ export default class messageList extends Component {
     {
         return(<div>
             <Form onSubmit = {this.handleLogout}>
-                       <Button className="btn-small" type="submit">
-                       <i className="fa fa-sign-out"></i>
-            </Button>
+                <Button className="btn-small" type="submit">
+                    <i className="fa fa-sign-out"></i>
+                </Button>
             </Form>
      
     

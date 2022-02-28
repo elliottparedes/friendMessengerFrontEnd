@@ -37,22 +37,37 @@ export default class messageList extends Component {
 
          
         })
-       
+       e.target.message.value ="";
 
     }
+
+    handleChange= (e) =>
+    {
+
+    }
+
     render()
     {
         return(
-        <div>
-          <Form  className="input-group" onSubmit = {this.sendMessage}>
-            <Form.Group  >
-                <Form.Control style = {{borderRadius:"0"}} required type="text" className="form-control" name="message" placeholder="Message" />
-            </Form.Group>
-            <Button className="btn" style = {{borderRadius:"0"}} variant="primary" type="submit">
-            <i className="fa fa-telegram"></i>
-            </Button>
-           </Form>
-        </div>)
+          // <Row style={{width:"100%"}}>
+          // <Form onSubmit = {this.sendMessage}>
+          //   <Form.Group >
+          //       <Form.Control style = {{borderRadius:"0"}} required type="text" className="form-control" name="message" placeholder="Message" />
+          //   </Form.Group>
+          //   <Button className="input-group-append btn" style = {{borderRadius:"0"}} variant="primary" type="submit">
+          //   <i className="fa fa-telegram"></i>
+          //   </Button>
+          //  </Form>
+          //  </Row>
+          <form onSubmit={this.sendMessage}>
+          <div className="input-group mb-3">
+          <input type="text" required className="form-control" name="message" style={{borderRadius:"0"}} placeholder="message" aria-label="message" aria-describedby="basic-addon2"/>
+          <div className="input-group-append">
+          <Button className="" variant="primary" style={{borderRadius:"0"}} type="submit"><i className="fa fa-telegram"/></Button>
+          </div>
+          </div>
+          </form>
+       )
     }
 
 

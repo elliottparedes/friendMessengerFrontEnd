@@ -62,17 +62,17 @@ export default class AddNewMessage extends Component {
         <div>
            
             <Button variant="primary" onClick={this.handleShow}>
-             <i className = " fa fa-plus"></i> 
+             <i className = " fa fa-plus"> New</i> 
           
             </Button>
             <Modal show={this.state.show} animation={true}>
-            <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Header>
+          <Modal.Title>Start a new conversation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Form onSubmit = {this.sendMessageToNewContact}>
   <Form.Group className="mb-3">
-  <Form.Control type="" name="username" placeholder="username" />
+  <Form.Control style={{marginBottom:"1rem"}} type="" name="username" placeholder="username" />
     <Form.Control type="" name="message" placeholder="Message" />
 
   </Form.Group>
@@ -86,11 +86,9 @@ export default class AddNewMessage extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.handleClose}>
-            Close
+            Cancel
           </Button>
-          <Button variant="primary" onClick={this.handleClose}>
-            Save Changes
-          </Button>
+     
         </Modal.Footer>
       </Modal>
                
