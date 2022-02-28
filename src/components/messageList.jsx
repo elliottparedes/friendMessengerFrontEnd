@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import AddNewMessage from '../components/addNewMessage'
-import Card from 'react-bootstrap/Card'
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Textbox from '../components/textbox'
-import DeleteContact from '../components/deleteContact'
-import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
+
 
 import './messageList.css'
-import { ThemeProvider } from 'react-bootstrap';
+
 
 export default class messageList extends Component {
 

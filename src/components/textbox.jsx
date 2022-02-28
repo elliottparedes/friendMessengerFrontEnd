@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import AddNewMessage from '../components/addNewMessage';
 
 export default class messageList extends Component {
 
