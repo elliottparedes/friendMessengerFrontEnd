@@ -13,6 +13,7 @@ import './messageList.css'
 
 export default class messageList extends Component {
 
+   
     intervalID =0;
     state = {messageList:[],
              conversationList:undefined,
@@ -26,7 +27,7 @@ export default class messageList extends Component {
 
 componentDidMount = () =>
 {
-                
+        
   
     console.log("messageList component did mount!")
     try{
@@ -41,19 +42,24 @@ componentDidMount = () =>
                             this.setState({conversationList:res.data});
                             this.setState({isLoading:false});
                             this.setState({conversationListLength:res.data.length});
+                            
+                         
                          }      
                          ) 
                }catch(err) {
                    console.log(err);
                }
 
-
+              
      this.intervalID =setInterval(this.getConversations, 1000);
       this.intervalID = setInterval(this.getMessages,1000);
 
     
                
 } 
+
+
+
 
 getConversations =async () =>
 {
@@ -181,8 +187,10 @@ showMessages = () =>
      })
      
      return(
-         <div className="imessage" style={{height:"15rem", overflowY:"auto", width: "100%"}}>
+         
+         <div className="imessage" style={{height:"15rem", overflowY:"auto", width: "100%",display:"flex"}}>
              {ret}
+             
          </div>
          
          )
@@ -225,8 +233,10 @@ deleteConversation = (convid) =>
                            data: {id:convid}
                          }).then(res =>{   
                            console.log(res);
+                           this.setState({currentContact:""});
                          }      
                          ) 
+            
                }catch(err) {
                    console.log(err);
                }
@@ -246,7 +256,7 @@ render()
     }
 
     return(
-        <Container style={{marginLeft:"0",paddingLeft:"0"}}>
+        <Container style={{marginLeft:"0",paddingLeft:"0", marginRight:"0",paddingRight:"0"}}>
             <Row style={{marginBottom:"0.5rem"}}>
                 <Col>
               
@@ -273,7 +283,7 @@ render()
                 <Col  style={{maxWidth:"60%"}}>
 
                     <Row style={{maxHeight:""}}>
-                        <Col>{this.showMessages()}</Col>
+                        <Col>{this.state.currentContact!==""?this.showMessages():<div className="imessage" style={{height:"15rem", overflowY:"auto", width: "100%",display:"flex"}}></div>}</Col>
                     </Row>
                     <Row>
                         <Col>

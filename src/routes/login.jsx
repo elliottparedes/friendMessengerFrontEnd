@@ -54,12 +54,12 @@ export default class login extends Component
       <div style={{height:"100vh", backgroundColor:"rgb(28,141,248)"}}>
     
          
-        <Container className="ml-0 mr-0 pl-0 pr-0" style ={{display:"flex", justifyContent:"center",alignItems:"center", height:"100vh"}}>
+        <Container className="ml-0 mr-0 pl-0 pr-0" style ={{display:"flex", justifyContent:"center",alignItems:"center", paddingTop:"4rem"}}>
           
           <Row className ="w-80">
             <Col className="border" style={{backgroundColor:"white", padding:"3rem", borderRadius:"30px"}}>
               <form onSubmit={this.HandleSubmit}>
-            <h3 className="mt-3 mb-3 text-center">Sign In</h3>
+            <h3 className=" mb-3 text-center">Sign In</h3>
             <Form.Group className="" controlId="formBasicEmail">
               <Form.Label className="" style={{fontWeight:"bold"}}>Email address</Form.Label>
               <Form.Control className="mb-4" type="email" name="email" placeholder="Enter email" />
