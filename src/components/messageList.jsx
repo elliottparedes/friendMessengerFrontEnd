@@ -148,7 +148,7 @@ showConversations =  () =>
        if(item.participants[0] ===sessionStorage.getItem("user")) 
        {
            return <div key={i} className="list-group-item list-group-item-action" style={{fontSize:"1.0rem"}}  onClick={()=>{this.setCurrentContact(item.participants[1]); this.setCurrentContactId(item._id);}}> 
-                <span>{item.participants[1]}<button style={{float:"right",display:this.state.editVisible?"":"none"}} className="btn btn-danger fa fa-trash" onClick={()=>this.deleteConversation(item._id)}></button></span>
+                <span>{item.participants[1]}<button style={{float:"right",visibility:this.state.editVisible?"":"hidden"}} className="btn btn-danger fa fa-trash" onClick={()=>this.deleteConversation(item._id)}></button></span>
                 </div>
        }
     
