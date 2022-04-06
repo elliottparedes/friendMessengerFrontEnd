@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Navigate} from "react-router-dom";
 import React, {Component} from 'react';
 import Container from 'react-bootstrap/Container'
-
+import './login.css'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -82,7 +82,7 @@ export default class login extends Component
       <div style={{height:"100vh", backgroundColor:"rgb(28,141,248)"}}>
     
          
-        <Container className="ml-0 mr-0 pl-0 pr-0" style ={{display:"flex", justifyContent:"center",alignItems:"center", paddingTop:"2rem"}}>
+        <Container className="ml-0 mr-0 pl-0 pr-0 center" style ={{display:"flex", justifyContent:"center",alignItems:"center", paddingTop:"2rem"}}>
           
           <Row className ="w-80">
             <Col className="border" style={{backgroundColor:"white", padding:"3rem", borderRadius:"30px"}}>
