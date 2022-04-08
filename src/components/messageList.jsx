@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 import Textbox from '../components/textbox'
 
 
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import './messageList.css'
 
 
@@ -28,10 +28,10 @@ export default class messageList extends Component {
 
 componentDidMount = () =>
 {
-    const socket = io("http://localhost:4001")
-    socket.on('connect',() => 
-    console.log("socket connected")
-    )
+    // const socket = io("http://localhost:4001")
+    // socket.on('connect',() => 
+    // console.log("socket connected")
+    // )
     console.log("messageList component did mount!")
     try{
         axios({
